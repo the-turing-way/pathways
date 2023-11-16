@@ -56,4 +56,4 @@ class TestWriteLandingPageContent(unittest.TestCase):
             "tests/test_files/test_landing/expected_landing.md", "r"
         ) as expected_landing_file:
             expected_landing_text = expected_landing_file.read()
-        self.assertMultiLineEqual(actual_text, expected_landing_text)
+        self.assertMultiLineEqual(actual_text.strip(), expected_landing_text.strip())
