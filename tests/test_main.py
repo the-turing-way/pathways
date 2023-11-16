@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from yaml import Loader, load
+from yaml import Loader, safe_load
 
 from pathways.main import (
     generate_landing_name,
@@ -38,11 +38,11 @@ class TestMask(unittest.TestCase):
     def test_mask_single_profile(self):
         whitelist = ["intro", "setup", "version_control/git"]
 
-        with open("tests/test_files/test_one/_toc.yml", "r", encoding="utf-8") as f:
-            toc = load(f, Loader=Loader)
+        with open("tests/test_files/test_one/_toc.yml", encoding="utf-8") as f:
+            toc = safe_load(f, Loader=Loader)
 
-        with open("tests/test_files/test_one/dsg_toc.yml", "r", encoding="utf-8") as f:
-            expected = load(f, Loader=Loader)
+        with open("tests/test_files/test_one/dsg_toc.yml", encoding="utf-8") as f:
+            expected = safe_load(f, Loader=Loader)
 
         actual = mask_toc(toc, whitelist)
 
@@ -216,7 +216,7 @@ class TestGetTocAndProfiles(unittest.TestCase):
                         Path("mybook/profiles.yml"), "r", encoding="utf-8"
                     )
                 except AssertionError as e:
-                    print(mock_open.call_args_list)
+                    print(mock_open.call_args_list)  # noqa: T201
                     raise e
 
                 self.assertEqual(44, toc)

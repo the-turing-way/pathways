@@ -24,7 +24,7 @@ class LandingPage:
         #  This is the title of the landing page
         self.landing_page_title = self.persona
 
-        #self.landing_page_title = "Table of Contents for: {0}".format(self.persona)
+        # self.landing_page_title = "Table of Contents for: {0}".format(self.persona)
         #  This is the path of the landing page
         # self.landing_page_path = os.path.join(self.book_path, self.persona)
         self.landing_page_path = os.path.join(self.book_path, landing_name)
@@ -35,9 +35,7 @@ class LandingPage:
         self.curated_links = []
 
     def __str__(self):
-        aboutme = "Persona: {0}\n Title: {1}\n".format(
-            self.persona, self.landing_page_title
-        )
+        aboutme = f"Persona: {self.persona}\n Title: {self.landing_page_title}\n"
         return aboutme
 
     def gather_curated_links(self, toc):
@@ -91,22 +89,18 @@ class LandingPage:
     def get_title_from_curated_page(self, curated_page_path):
         """Get title from curated page, given path"""
 
-        header_content = "Page:{0} title is not found".format(curated_page_path)
+        header_content = f"Page:{curated_page_path} title is not found"
         curated_page_path = os.path.join(self.book_path, curated_page_path)
-        with open(curated_page_path, "r", encoding="utf-8") as input_file:
+        with open(curated_page_path, encoding="utf-8") as input_file:
             markdown_text = input_file.read()
             header_content = self.get_title_from_text(markdown_text)
         return header_content
 
     def write_content(self):
-        self.md_file.new_header(
-            level=1, title=self.persona , add_table_of_contents="n"
-        )
+        self.md_file.new_header(level=1, title=self.persona, add_table_of_contents="n")
         self.md_file.new_paragraph(self.description)
         self.md_file.write("<h2>Table Of Contents</h2>")
-        intro_paragraph = "These are the pages curated for {0}".format(
-            self.persona.upper()
-        )
+        intro_paragraph = f"These are the pages curated for {self.persona.upper()}"
         self.md_file.new_paragraph(intro_paragraph)
         self.md_file.new_list(self.curated_links)
         self.md_file.create_md_file()
