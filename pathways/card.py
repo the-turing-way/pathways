@@ -33,9 +33,9 @@ def overwrite_md(new_md_text, path_welcome_md):
 def create_bullet_string(file_list):
     """From the list of files for a single toc, create a bullet point string."""
     toc_string = ""
-    max_bullets = 3
+    max_bullets = 4
 
-    for f in file_list[0:3]:
+    for f in file_list[0 : max_bullets - 1]:
         toc_string += "- [](" + f + ")\n"
 
     if len(file_list) > max_bullets:
