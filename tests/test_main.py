@@ -202,8 +202,8 @@ class TestGetTocAndProfiles(unittest.TestCase):
         """Check that open() and load() are called."""
 
         with mock.patch("pathways.main.open") as mock_open:
-            with mock.patch("pathways.main.load") as mock_load:
-                mock_load.return_value = 44
+            with mock.patch("pathways.main.safe_load") as mock_safe_load:
+                mock_safe_load.return_value = 44
 
                 path = Path("mybook")
                 toc, profiles = get_toc_and_profiles(path)
