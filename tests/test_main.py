@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from yaml import Loader, safe_load
+from yaml import safe_load
 
 from pathways.main import (
     generate_landing_name,
@@ -39,10 +39,10 @@ class TestMask(unittest.TestCase):
         whitelist = ["intro", "setup", "version_control/git"]
 
         with open("tests/test_files/test_one/_toc.yml", encoding="utf-8") as f:
-            toc = safe_load(f, Loader=Loader)
+            toc = safe_load(f)
 
         with open("tests/test_files/test_one/dsg_toc.yml", encoding="utf-8") as f:
-            expected = safe_load(f, Loader=Loader)
+            expected = safe_load(f)
 
         actual = mask_toc(toc, whitelist)
 
