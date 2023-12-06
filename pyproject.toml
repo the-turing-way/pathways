@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "pathways"
 dynamic = ["version"]
-description = 'Curate user pathways for The Turing Way'
+description = "Curate user pathways for The Turing Way"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

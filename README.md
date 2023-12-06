@@ -1,36 +1,39 @@
-# How to set up environment to use "add-persona" feature
+# Pathways
 
+![GitHub License](https://img.shields.io/github/license/the-turing-way/pathways)
 ![Codestyle Black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/the-turing-way/pathways/ci.yaml)
 
-**See [User Guide for Turing Way Pathways](documentation.md) for details on how to use this package for *[The Turing Way](https://github.com/alan-turing-institute/the-turing-way)***.
+Curate user pathways for The Turing Way
 
----
+## Documentation
 
-## Instructions
+Read the [user guide](./documentation.md) to learn how to create pathways.
 
-### Install
+## Development
 
-#### Users
+[Hatch](https://hatch.pypa.io) is used to build and manage environments.
 
-1. Clone the source code with `git clone git@github.com:alan-turing-institute/bio-Turing-Way`
-1. Change to the source code directory with `cd bio-Turing-Way/`
-1. Install with `pip install pathways/` (the `/` is mandatory)
-2. Install jupyter-book dependencies with `pip install -r master/requirements.txt`
+### Code Style
 
-#### Developers
+This project uses Black and Ruff.
+The configuration of these packages is defined in [pyproject.toml](./pyproject.toml).
+The style can be checked with
 
-1. Clone the source code with `git clone git@github.com:alan-turing-institute/bio-Turing-Way`
-1. Change to the source code directory with `cd bio-Turing-Way/pathways`
-1. Install Poetry
-1. Create a poetry environment and install dependencies with `poetry install`
-1. Install Git pre-commit hooks by installing Pre-Commit and then running `pre-commit install`
+```console
+$ hatch run lint:style
+```
 
-### Run
+Some problems can be fixed automatically with
 
-1. With pathways installed, you can run `python -m pathways.main --help` for help.
-2. Run `python -m pathways.main pathways master` to create a new book with personas.
+```console
+$ hatch run lint:fmt
+```
 
-### Testing
+### Tests
 
-1. Run unit tests from the pathways/ directory with `./run_tests.sh`
-1. Run static check pre-commit hooks with `pre-commit run [hook-id]`
+Tests can be run with
+
+```console
+$ hatch run test
+```
