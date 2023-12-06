@@ -79,7 +79,7 @@ You will also need to update the test in `tests/test_card.py` for the tests to p
 
 ### Changing the Number of Pages per Card
 
-Currently the first four pages for each pathway are shown on a card.
+Currently the first three pages for each pathway are shown on a card.
 This is controlled by the variable `max_bullets` in the `create_bullet_string` function in `card.py`.
 
 ### Edit Cards' Appearance
