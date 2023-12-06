@@ -209,9 +209,7 @@ class TestGetTocAndProfiles(unittest.TestCase):
                 toc, profiles = get_toc_and_profiles(path)
 
                 try:
-                    mock_open.assert_any_call(
-                        Path("mybook/_toc.yml"), encoding="utf-8"
-                    )
+                    mock_open.assert_any_call(Path("mybook/_toc.yml"), encoding="utf-8")
                     mock_open.assert_any_call(
                         Path("mybook/profiles.yml"), encoding="utf-8"
                     )
