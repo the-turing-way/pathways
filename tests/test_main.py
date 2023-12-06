@@ -210,10 +210,10 @@ class TestGetTocAndProfiles(unittest.TestCase):
 
                 try:
                     mock_open.assert_any_call(
-                        Path("mybook/_toc.yml"), "r", encoding="utf-8"
+                        Path("mybook/_toc.yml"), encoding="utf-8"
                     )
                     mock_open.assert_any_call(
-                        Path("mybook/profiles.yml"), "r", encoding="utf-8"
+                        Path("mybook/profiles.yml"), encoding="utf-8"
                     )
                 except AssertionError as e:
                     print(mock_open.call_args_list)  # noqa: T201

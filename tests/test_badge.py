@@ -93,9 +93,9 @@ class TestInsertBadges(unittest.TestCase):
             )
 
             # Check we're reading the files that we think we are
-            mock_open.assert_any_call(fake_path / "file1.md", "r", encoding="utf-8")
-            mock_open.assert_any_call(fake_path / "file2.md", "r", encoding="utf-8")
-            mock_open.assert_any_call(fake_path / "file3.md", "r", encoding="utf-8")
+            mock_open.assert_any_call(fake_path / "file1.md", encoding="utf-8")
+            mock_open.assert_any_call(fake_path / "file2.md", encoding="utf-8")
+            mock_open.assert_any_call(fake_path / "file3.md", encoding="utf-8")
 
             # Check we're writing those same files
             mock_open.assert_any_call(fake_path / "file1.md", "w", encoding="utf-8")
