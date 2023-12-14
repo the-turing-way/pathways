@@ -4,8 +4,14 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    ignore:
+      - update-types: ["version-update:semver-patch"]
+        dependency-name: "*"
   - package-ecosystem: pip
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+    ignore:
+      - update-types: ["version-update:semver-patch"]
+        dependency-name: "*"
