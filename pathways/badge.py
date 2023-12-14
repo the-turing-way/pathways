@@ -6,14 +6,14 @@ import urllib
 def generate_badge(profile_name, colour, landing_name):
     """Return some badge markdown and a list of files to insert it into."""
 
-    url = generate_shields_link(profile_name,colour)
-    landing_page = "{0}.md".format(landing_name)
+    url = generate_shields_link(profile_name, colour)
+    landing_page = f"{landing_name}.md"
     markdown = f"[![]({url})](/{landing_page})"
-
 
     return markdown
 
-def generate_shields_link(profile_name,colour):
+
+def generate_shields_link(profile_name, colour):
     """Generate a https://shields.io/ URL for this profile."""
 
     url = (
@@ -26,21 +26,19 @@ def generate_shields_link(profile_name,colour):
 
 
 def insert_badges(book_path, badges, profiles):
-
     """Insert badges into the files specified by profiles."""
 
     # By using make_badge_dict(), we only need to open each file once
-    badge_dict= make_badge_dict(badges, profiles)
+    badge_dict = make_badge_dict(badges, profiles)
 
     for key, value in badge_dict.items():
-
-        with open(book_path / (key + ".md"), "r", encoding="utf-8") as f:
+        with open(book_path / (key + ".md"), encoding="utf-8") as f:
             text = f.read()
 
         text = edit_text(value, text)
 
         with open(book_path / (key + ".md"), "w", encoding="utf-8") as f:
-            f.write(text)       
+            f.write(text)
 
 
 def edit_text(badges, text):
@@ -56,12 +54,11 @@ def edit_text(badges, text):
     return text
 
 
-
 def make_badge_dict(badges, profiles):
     """Make a dict of files and their badges."""
-    badge_dict = dict()
+    badge_dict = {}
 
-    for badge, profile in zip(badges, profiles):
+    for badge, profile in zip(badges, profiles, strict=True):
         for filename in profile["files"]:
             if filename in badge_dict:
                 entry = badge_dict[filename]

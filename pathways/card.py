@@ -13,7 +13,7 @@ def insert_into_md(path_welcome_md, heading_title, panel_string):
 
 def get_text_from_md(path_welcome_md):
     """Get the text from the markdown file."""
-    with open(path_welcome_md, "r", encoding="utf-8") as md:
+    with open(path_welcome_md, encoding="utf-8") as md:
         md_text = md.read()
     return md_text
 
@@ -33,11 +33,12 @@ def overwrite_md(new_md_text, path_welcome_md):
 def create_bullet_string(file_list):
     """From the list of files for a single toc, create a bullet point string."""
     toc_string = ""
+    max_bullets = 3
 
-    for f in file_list[0:3]:
+    for f in file_list[:max_bullets]:
         toc_string += "- [](" + f + ")\n"
 
-    if len(file_list) > 3:
+    if len(file_list) > max_bullets:
         toc_string += "\nAnd more... \n"
 
     return toc_string
@@ -72,7 +73,7 @@ def create_panel(list_cards):
 def create_profile_button(profile_name, landing_name):
     """Create the button linking to the profile."""
     # relative_path = "./" + profile_name.lower() + ".html"
-    relative_path = "./{0}.html".format(landing_name)
+    relative_path = f"./{landing_name}.html"
     start_button = "```{link-button} "
     text_button = "\n:text: "
     option_button = "\n:classes: bg-info text-white text-center font-weight-bold\n```"

@@ -1,157 +1,110 @@
 # User Guide for Turing Way Pathways
 
-Package developed in the repository allows *[The Turing Way](https://github.com/alan-turing-institute/the-turing-way)* to provide different entry points, referred in this repository as Pathways, for users to browse curated chapters based on their user profiles or personas. 
+This package allows [*The Turing Way*](https://the-turing-way.netlify.app) to provide different entry points, referred to as Pathways.
+Readers can use pathways to browse curated chapters based on their personas.
 
 This documentation provide step by step guide for new users.
 
-<img src="images/image_panel.png" alt="drawing" width="700"/> 
+## Pathways Overview
 
-_The panel on the Welcome Page for the Turing Way._
+The pathways panel is displayed on *The Turing Way's* Welcome Page.
 
----
+![The Turing Way's Welcome page showing the pathways panel. The panel has four cards, each for a different pathway. The pathways shown are DSG, Enrichment Students, Group Leaders and Life Scientists. For each pathway there is a button to take you to that pathway and a preview of the chapters it contains.](images/image_panel.png "The pathways panel on The Turing Way's Welcome Page")
 
-<img src="images/image_landingpage.png" alt="drawing" width="500"/>
+Each pathway has a landing page with links to its pages across the Turing Way.
 
-_Each pathway has a landing page with links to specified pages across the Turing Way._ 
+![The landing page for the Group Leaders pathway. The page explains that it curates items for the Group Leaders pathway. There is a table of contents which shows the guides, chapters and pages which form the pathway.](images/image_landingpage.png "A pathway landing page")
 
+Each page has badges showing which pathways it belongs to.
+The badges link back to the pathway's landing page.
 
----
-<img src="images/image_tags.png" alt="drawing" width="700"/>
+![The entry page for the Guide for Reproducible Research. Below the page's title are a set of badges in a row, which show the pathways that this page belongs to. Each badge is split into two halves vertically. The left-hand side reads "pathway" in light text on a dark background. The right-hand side shows the name of the pathway. Each pathway's badge uses a different coloured background on the right-hand side to help distinguish them.](./images/image_tags.png "A page showing pathway badges")
 
-_Each page has a tag showing which pathway it belongs to, which links back to the landing page._ 
+## Managing a Pathways
 
+In the [book's repository](https://github.com/the-turing-way/the-turing-way) the profiles file is located at `book/website/profiles.yml`
+This YAML file defines which pages are included for different pathways.
 
-## How to Add a New Pathway
+Here is an example
 
-A new pathway, also known as user profile, is a curated table of contents for a specific user of the Turing Way. A landing page links to the different pages this user can browse in order. As the Turing Way is a large book, this provides a simpler entry point. 
-
-
-
-### Find the profiles.yaml file
-
-Go to `/master/profiles.yml`
-
-
-<img src="images/image_profilesYAML.png" alt="drawing" width="500"/>
-
-
-This YAML file defines which pages are included for different "user profiles", which you can add to. 
-
-### Add new user profile/pathway
-
-`- name: ` defines the user profile or pathway name. This will be used in the tags, the landing page title, and the card.  
-
-### Include pages
-The relative paths for each of the pages from the Turing Way are included under `files:`. Relative links follow the directory structure of the original markdown files, and are equivilent syntax to including links to other pages in markdown.
-
->**Important:** You cannot have a page without its parents or it will not appear in the landing page. So it is not possible to have `communications/comms-overview/comms-overview-principles` without `communications/comms-overview/`. Orphan pages missing from the landing page will be tagged. 
-
-### Decide the colour
-`colour:` defines the colour of the card and the tag button that appears on every included page.
-
-<img src="images/image_tagbig.png" alt="drawing" width="800"/>
-
-All CSS colour names should be supported. 
-
-
-## Part 02: The Card Panel on the Welcome Page
-
-<img src="images/image_panel.png" alt="drawing" width="800"/>
-
-
-### Default behaviour
-
-When running the scripts to create the Turing Way html files, the script `main.py` is called, which uses the table of contents defined in the `profiles.yml` file to generate a _landing page_ for each profile/pathway. 
-
-In addition, a series of cards are produced on the main Welcome Page to the Turing Way with a preview of each pathway and its included pages. 
-
-Currently, the cards are created under the heading _Different Pathways_. 
-
-### Changing where the cards appear
-
-The script `pathways/pathways/card.py` looks for a specified line of text in the Welcome Page markdown file and inserts the card panels after it. 
-
-Currently, the cards are created under the heading `## Different Pathways`.
-
-
-<img src="images/image_cardPY.png" alt="drawing" width="500"/>
-
-The script looks for the specified string (highlighted on Line 28) within the Welcome Page markdown file:
-
-<img src="images/image_markdown.png" alt="drawing" width="500"/>
-
-
-Alter both these files to change where the card panel appears on the Welcome Page, or otherwise when the "Different Pathways" heading is edited. 
-
->**Important:** Also change the string in the `bio-turingway/pathways/tests/test_card.py` to make sure the test passes.  
->
-> Changing this will require reinstallation of the dependencies, see "Part 03 - Dependencies and Library Install" below for futher details. 
-
-### How many pages linked in each card
-
-Currently the first four pages for each profile/pathway are linked within the card. Pages after this are not included. 
-
-To alter the number of included pages in the card, look for a function within `card.py` called `create_bullet_string` and change the number in the `for` (Line 37) and `if` (Line 40) from 3 to another value. 
-
-<img src="images/image_cardfunction.png" alt="drawing" width="800"/>
-
-
-> Changing this will require reinstallation of the dependencies, see "Part 03 - Dependencies and Library Install" below for futher details. 
-
-### Edit the appearance of the cards and the panel
-
-Within `card.py`, edits can be made to change the appearance of the cards and panels. You can find the guidelines for this in the following documentation:
-
-https://sphinx-panels.readthedocs.io/en/latest/#card-layout
-
-For example, edit these properties in the function `create_panel`. 
-
-<img src="images/image_panelfunction.png" alt="drawing" width="600"/>
-
-> Changing this will require reinstallation of the dependencies, see "Part 03 - Dependencies and Library Install" below for futher details. 
-
-## Part 03: Running the Script and Tests
-
-### Python version and environment 
-The scripts use Python version 3.8 and other versions are not yet compatible. 
-
-The steps to create a virtual environment using conda in the terminal are as follows:
-
+```yaml
+- name: Early Career Researchers
+  files:
+    - project-design/project-design
+    - collaboration/github-novice
+    - project-design/project-repo
+...
+  colour: blue
+  description: Early Career Researchers (ECRs) are students, PhDs and early-stage
+    postdocs who may not have a lot of experience in contributing to research
+    projects from start to finish. This curated set of chapters will allow them
+    to understand what best practices apply at different stages of development
+    to ensure research reproducibility.
 ```
-conda create -n turing-persona python=3.8
-conda activate turing-persona
+
+The pathways file is a list of pathways.
+Each pathway has the following keys,
+
+name
+: The pathway name.
+: This will be used in the tags, the landing page title, and the card.
+
+files
+: Relative paths of the pages to include (excluding `.md` suffix).
+: Note that if you include a page without its parents it will not appear in the landing page.
+  So it is not possible to have `communications/comms-overview/comms-overview-principles` without `communications/comms-overview/`.
+  Pages missing from the landing page will still be tagged with badges.
+
+colour
+: The colour of the pathway's badge.
+: All CSS colour names should be supported.
+
+description
+: Text describing the profile which the pathway was designed for.
+: This text is displayed on the pathway's landing page.
+
+## The Card Panel on the Welcome Page
+
+The pathways script adds new (HTML) pages to the JupyterBook build.
+A landing page for each of the pathways defined in `profiles.yml` is created.
+A panel of pathways cards is also produced and added to the Welcome Page.
+
+### Changing Where the Cards Appear
+
+Currently, the cards are created under the heading Different Pathways.
+The script `pathways/pathways/card.py` looks for the line of text `## Different Pathways` in the Welcome Page markdown file and inserts the card panels after it.
+
+Alter both these files to change where the card panel appears on the Welcome Page, or change the heading name.
+You will also need to update the test in `tests/test_card.py` for the tests to pass.
+
+### Changing the Number of Pages per Card
+
+Currently the first three pages for each pathway are shown on a card.
+This is controlled by the variable `max_bullets` in the `create_bullet_string` function in `card.py`.
+
+### Edit Cards' Appearance
+
+Within `card.py`, edits can be made to change the appearance of the cards and panels in the `create_panel` function.
+You can find the guidelines for this in the [Sphinx documentation](https://sphinx-panels.readthedocs.io/en/latest/#card-layout).
+
+## Development Environment
+
+To create a development environment with all dependencies and an editable install of the package run
+
+```console
+$ hatch create
 ```
-However, the python environment can be created with poetry or venv or similar, depending on preference. 
 
-### Dependencies and Library Install
+You can enter a shell in this environment with
 
-To install the dependencies and the `pathways` library then also run in the terminal: 
-
+```console
+$ hatch shell
 ```
-pip install pathways/
-pip install -r master/requirements.txt
+
+## Building the Book with Pathways
+
+With the pathways module in your Python path (for example, when in the hatch environment) run
+
+```console
+$ python -m pathways.main pathways <path to book/website/>`
 ```
-> **Important:** If `main.py` or `card.py` are edited these dependencies need to be reinstalled. For example, when changing the location of the card panels in `card.py`. (This is not necessary if the `profiles.yml` file has been edited)
->
->Run `pip uninstall pathways` first and then run the above lines again.  
-
-### Creating the Turing Way JupyterBook  
-Finally, to run the Jupyter book and create the different pathways, then run the following:
-
-`python -m pathways.main pathways master`
-
-This will produce the landing pages, and the welcome page with the pathway cards. The individual pages within the Turing Way will also be tagged. 
-
-### Running Tests
-
-To run the tests, in the terminal navigate to `bio-turingway/pathways/` and then run:
-
-`./run_tests.sh`
-
-and 
-
-`pre-commit run [hook-id]`
-
-
-
-

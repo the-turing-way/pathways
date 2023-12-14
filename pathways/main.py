@@ -2,11 +2,11 @@
 import sys
 from argparse import ArgumentParser
 from pathlib import Path
-from shutil import copytree
+from shutil import which
 from subprocess import run
 from sys import exit as sys_exit
 
-from yaml import Loader, load
+from yaml import Loader, safe_load
 
 from pathways import landing_page
 from pathways.badge import generate_badge, insert_badges
@@ -16,11 +16,11 @@ from pathways.card import HEADING_TITLE, create_card, create_panel, insert_into_
 def get_toc_and_profiles(book_path):
     """Get the contents of _toc.yml and profiles.yml."""
 
-    with open(book_path / "_toc.yml", "r", encoding="utf-8") as f:
-        toc = load(f, Loader=Loader)
+    with open(book_path / "_toc.yml", encoding="utf-8") as f:
+        toc = safe_load(f, Loader=Loader)
 
-    with open(book_path / "profiles.yml", "r", encoding="utf-8") as f:
-        profiles = load(f, Loader=Loader)
+    with open(book_path / "profiles.yml", encoding="utf-8") as f:
+        profiles = safe_load(f, Loader=Loader)
 
     return toc, profiles
 
@@ -56,8 +56,8 @@ def pathways(book_path):
     """Add extra pathways to the book."""
 
     # The contents of _toc.yml and profiles.yml contents
-    #new_path = book_path.parent / (book_path.name + "_copy")
-    #copytree(book_path, new_path, dirs_exist_ok=True)
+    # new_path = book_path.parent / (book_path.name + "_copy")
+    # copytree(book_path, new_path, dirs_exist_ok=True)
 
     landing_page.LandingPage.book_path = book_path
     toc, profiles = get_toc_and_profiles(book_path)
@@ -77,16 +77,18 @@ def pathways(book_path):
                 generate_toc(toc, profile),
                 landing_name,
                 profile["description"],
-            ))
-        
+            )
+        )
+
     insert_cards(book_path / "index.md", cards)
     insert_landing_pages(landing_pages)
     insert_badges(book_path, badges, profiles)
 
-    run(["jupyter-book", "build", book_path], check=True)
+    jupyter_book_executable = which("juptyer-book")
+    run([jupyter_book_executable, "build", book_path], check=True)  # noqa: S603
     # rmtree(new_path)
 
-    print("Finished adding pathways.")
+    print("Finished adding pathways.")  # noqa: T201
 
 
 def main(args):
@@ -130,7 +132,7 @@ def mask_parts(components, whitelist):
 
     # We could have a list of parts, chapters or sections
     for component in components:
-        new_component = dict()
+        new_component = {}
 
         for key, value in component.items():
             if key == "file":
