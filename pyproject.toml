@@ -24,6 +24,9 @@ Documentation = "https://github.com/unknown/pathways#readme"
 Issues = "https://github.com/unknown/pathways/issues"
 Source = "https://github.com/unknown/pathways"
 
+[tool.hatch.build]
+only-include = ["pathways/"]
+
 [tool.hatch.version]
 path = "pathways/__about__.py"
 
