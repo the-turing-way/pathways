@@ -4,10 +4,10 @@
 #
 #    pip-compile
 #
-attrs==21.4.0
-    # via markdown-it-py
-markdown-it-py==1.1.0
+markdown-it-py==3.0.0
     # via pathways (pyproject.toml)
+mdurl==0.1.2
+    # via markdown-it-py
 mdutils==1.6.0
     # via pathways (pyproject.toml)
 pyyaml==6.0.1
