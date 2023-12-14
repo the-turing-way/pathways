@@ -6,7 +6,7 @@
 #
 attrs==21.4.0
     # via markdown-it-py
-markdown-it-py==1.1.0
+markdown-it-py==3.0.0
     # via pathways (pyproject.toml)
 mdutils==1.6.0
     # via pathways (pyproject.toml)
