@@ -1,4 +1,5 @@
 """Tests for the landing-page class."""
+
 import json
 import unittest
 

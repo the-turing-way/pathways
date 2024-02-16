@@ -1,4 +1,5 @@
 """Generate different pathways of the book, as determined by profiles.yml."""
+
 import re
 import urllib
 

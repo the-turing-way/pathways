@@ -1,4 +1,5 @@
 """Create landing pages for each profile."""
+
 import os
 
 import mdutils
