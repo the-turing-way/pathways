@@ -1,4 +1,5 @@
 """Tests for the cards module."""
+
 import unittest
 
 from pathways.card import create_card, create_panel, insert_text_after_string
