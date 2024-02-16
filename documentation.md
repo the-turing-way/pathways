@@ -106,5 +106,5 @@ $ hatch shell
 With the pathways module in your Python path (for example, when in the hatch environment) run
 
 ```console
-$ python -m pathways.main pathways <path to book/website/>`
+$ python -m pathways.main pathways <path to book/website/>
 ```
