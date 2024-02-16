@@ -45,23 +45,20 @@ Here is an example
 The pathways file is a list of pathways.
 Each pathway has the following keys,
 
-name
-: The pathway name.
-: This will be used in the tags, the landing page title, and the card.
-
-files
-: Relative paths of the pages to include (excluding `.md` suffix).
-: Note that if you include a page without its parents it will not appear in the landing page.
+- **name**
+  The pathway name.
+  This will be used in the tags, the landing page title, and the card.
+- **files**
+  Relative paths of the pages to include (excluding `.md` suffix).
+  Note that if you include a page without its parents it will not appear in the landing page.
   So it is not possible to have `communications/comms-overview/comms-overview-principles` without `communications/comms-overview/`.
   Pages missing from the landing page will still be tagged with badges.
-
-colour
-: The colour of the pathway's badge.
-: All CSS colour names should be supported.
-
-description
-: Text describing the profile which the pathway was designed for.
-: This text is displayed on the pathway's landing page.
+- **colour**
+  The colour of the pathway's badge.
+  All CSS colour names should be supported.
+- **description**
+  Text describing the profile which the pathway was designed for.
+  This text is displayed on the pathway's landing page.
 
 ## The Card Panel on the Welcome Page
 
