@@ -1,4 +1,5 @@
 """Tests for the badge module."""
+
 import unittest
 from pathlib import Path
 from unittest import mock

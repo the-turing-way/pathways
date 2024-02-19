@@ -19,6 +19,9 @@ dependencies = [
   "PyYAML~=6.0",
 ]
 
+[project.scripts]
+pathways = "pathways.main:main"
+
 [project.urls]
 Documentation = "https://github.com/unknown/pathways#readme"
 Issues = "https://github.com/unknown/pathways/issues"
