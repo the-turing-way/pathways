@@ -23,7 +23,7 @@ def main():
     )
     parser.add_argument(
         "--build",
-        action="set_true",  # ???
+        action="store_true",
         help="Run jupyterbook build",
     )
 

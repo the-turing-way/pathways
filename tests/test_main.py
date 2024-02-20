@@ -19,16 +19,17 @@ class TestMain(unittest.TestCase):
     """Test main function from the main module."""
 
     def test_main(self):
-        with mock.patch("pathways.main.pathways") as mock_build:
-            main(["pathways", "/path/to/my/book/"])
-
-            mock_build.assert_called_once_with(book_path=Path("/path/to/my/book/"))
+        with mock.patch("sys.argv", ["pathways", "/path/to/my/book/"]):
+            with mock.patch("pathways.main.pathways") as mock_build:
+                main()
+                mock_build.assert_called_once_with(Path("/path/to/my/book/"))
 
     def test_no_args(self):
-        # Should print help message and exit
-        with mock.patch("pathways.main.sys_exit") as mock_exit:
-            main([])
-            mock_exit.assert_called_once_with(1)
+        # self.assertRaises(SystemExit, main())
+        with self.assertRaises(SystemExit) as exc:
+            main()
+
+        self.assertEqual(exc.exception.code, 2)
 
 
 class TestMask(unittest.TestCase):
