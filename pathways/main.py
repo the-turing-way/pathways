@@ -1,17 +1,42 @@
 """Generate different pathways of the book, as determined by profiles.yml."""
 
-import sys
 from argparse import ArgumentParser
 from pathlib import Path
 from shutil import which
 from subprocess import run
-from sys import exit as sys_exit
 
 from yaml import Loader, safe_load
 
 from pathways import landing_page
 from pathways.badge import generate_badge, insert_badges
 from pathways.card import HEADING_TITLE, create_card, create_panel, insert_into_md
+
+
+def main():
+    """Parse arguments and call sub-commands as appropriate."""
+
+    # Get the arguments passed in by the user
+    parser = ArgumentParser(description="Build a Jupyter Book.")
+
+    parser.add_argument(
+        "book_path", type=Path, help="the path to the root of your Jupyter Book"
+    )
+    parser.add_argument(
+        "--build",
+        action="store_true",
+        help="Run jupyterbook build",
+    )
+
+    clargs = parser.parse_args()
+
+    pathways(clargs.book_path)
+
+    if clargs.build:
+        jupyter_book_executable = which("juptyer-book")
+        run(
+            [jupyter_book_executable, "build", clargs.book_path],  # noqa:S603
+            check=True,
+        )
 
 
 def get_toc_and_profiles(book_path):
@@ -55,11 +80,6 @@ def generate_landing_name(profile_name):
 
 def pathways(book_path):
     """Add extra pathways to the book."""
-
-    # The contents of _toc.yml and profiles.yml contents
-    # new_path = book_path.parent / (book_path.name + "_copy")
-    # copytree(book_path, new_path, dirs_exist_ok=True)
-
     landing_page.LandingPage.book_path = book_path
     toc, profiles = get_toc_and_profiles(book_path)
 
@@ -85,35 +105,7 @@ def pathways(book_path):
     insert_landing_pages(landing_pages)
     insert_badges(book_path, badges, profiles)
 
-    jupyter_book_executable = which("juptyer-book")
-    run([jupyter_book_executable, "build", book_path], check=True)  # noqa: S603
-    # rmtree(new_path)
-
     print("Finished adding pathways.")  # noqa: T201
-
-
-def main(args):
-    """Parse arguments and call sub-commands as appropriate."""
-
-    # Get the arguments passed in by the user
-    parser = ArgumentParser(description="Build a Jupyter Book.")
-    subparsers = parser.add_subparsers()
-
-    build_subparser = subparsers.add_parser("pathways")
-    build_subparser.add_argument(
-        "book_path", type=Path, help="the path to the root of your Jupyter Book"
-    )
-    build_subparser.set_defaults(func=pathways)
-
-    arguments = parser.parse_args(args)
-    arg_dict = vars(arguments)
-
-    if arg_dict.get("func"):
-        # Call the sub-parser's function with the other arguments
-        arg_dict.pop("func")(**arg_dict)
-    else:
-        parser.print_help(sys.stderr)
-        sys_exit(1)
 
 
 def mask_parts(components, whitelist):
@@ -174,8 +166,3 @@ def mask_toc(toc, whitelist):
 def generate_toc(toc, profile):
     """Generate a new ToC for each profile."""
     return mask_toc(toc, profile["files"])
-
-
-if __name__ == "__main__":
-    main(sys.argv[1:])  # pragma: no cover
-    # main(["pathways", "master"])
