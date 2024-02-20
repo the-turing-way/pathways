@@ -32,7 +32,14 @@ def main():
     pathways(clargs.book_path)
 
     if clargs.build:
-        jupyter_book_executable = which("juptyer-book")
+        jupyter_book_executable = which("jupyter-book")
+        if not jupyter_book_executable:
+            msg = (
+                "Unable to find jupyter-book executable."
+                " This is required to build the book."
+            )
+            raise FileNotFoundError(msg)
+
         run(
             [jupyter_book_executable, "build", clargs.book_path],  # noqa:S603
             check=True,
