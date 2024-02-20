@@ -31,8 +31,8 @@ def main():
 
     pathways(clargs.book_path)
 
+    jupyter_book_executable = which("jupyter-book")
     if clargs.build:
-        jupyter_book_executable = which("juptyer-book")
         run(
             [jupyter_book_executable, "build", clargs.book_path],  # noqa:S603
             check=True,
