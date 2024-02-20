@@ -5,7 +5,7 @@ from pathlib import Path
 from shutil import which
 from subprocess import run
 
-from yaml import Loader, safe_load
+from yaml import safe_load
 
 from pathways import landing_page
 from pathways.badge import generate_badge, insert_badges
@@ -43,10 +43,10 @@ def get_toc_and_profiles(book_path):
     """Get the contents of _toc.yml and profiles.yml."""
 
     with open(book_path / "_toc.yml", encoding="utf-8") as f:
-        toc = safe_load(f, Loader=Loader)
+        toc = safe_load(f)
 
     with open(book_path / "profiles.yml", encoding="utf-8") as f:
-        profiles = safe_load(f, Loader=Loader)
+        profiles = safe_load(f)
 
     return toc, profiles
 
