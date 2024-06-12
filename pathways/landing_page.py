@@ -60,8 +60,7 @@ class LandingPage:
                     curated_links.append(get_links_of_section(section["sections"]))
             return curated_links
 
-        book = toc["parts"][0]
-        chapters = book["chapters"]
+        chapters = toc["chapters"]
         self.curated_links = get_links_of_section(chapters)
 
     def get_title_from_text(self, markdown_text):
