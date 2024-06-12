@@ -1,25 +1,21 @@
 {
-  "parts": [
-      {
-          "chapters": [
-              {
-                  "file": "communication/communication",
-                  "sections": [
-                      {
-                          "file": "communication/comms-overview",
-                          "sections": [
-                              {
-                                  "file": "communication/comms-overview/comms-overview-principles",
-                                  "title": "Principles of Communicating with Wider Audiences"
-                              }
-                          ],
-                          "title": "Overview of Guide for Communication"
-                      }
-                  ]
-              }
-          ]
-      }
-  ],
-  "format": "jb-book",
-  "root": "welcome"
+    "chapters": [
+        {
+            "file": "communication/communication",
+            "sections": [
+                {
+                    "file": "communication/comms-overview",
+                    "sections": [
+                        {
+                            "file": "communication/comms-overview/comms-overview-principles",
+                            "title": "Principles of Communicating with Wider Audiences"
+                        }
+                    ],
+                    "title": "Overview of Guide for Communication"
+                }
+            ]
+        }
+    ],
+    "format": "jb-book",
+    "root": "welcome"
 }
