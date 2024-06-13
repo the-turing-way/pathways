@@ -24,7 +24,7 @@ class LandingPage:
         #  This is the title of the landing page
         self.landing_page_title = self.persona
 
-        #self.landing_page_title = "Table of Contents for: {0}".format(self.persona)
+        # self.landing_page_title = "Table of Contents for: {0}".format(self.persona)
         #  This is the path of the landing page
         # self.landing_page_path = os.path.join(self.book_path, self.persona)
         self.landing_page_path = os.path.join(self.book_path, landing_name)
@@ -98,9 +98,7 @@ class LandingPage:
         return header_content
 
     def write_content(self):
-        self.md_file.new_header(
-            level=1, title=self.persona , add_table_of_contents="n"
-        )
+        self.md_file.new_header(level=1, title=self.persona, add_table_of_contents="n")
         self.md_file.new_paragraph(self.description)
         self.md_file.write("<h2>Table Of Contents</h2>")
         intro_paragraph = "These are the pages curated for {0}".format(

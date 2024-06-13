@@ -2,7 +2,6 @@
 import sys
 from argparse import ArgumentParser
 from pathlib import Path
-from shutil import copytree
 from subprocess import run
 from sys import exit as sys_exit
 
@@ -56,8 +55,8 @@ def pathways(book_path):
     """Add extra pathways to the book."""
 
     # The contents of _toc.yml and profiles.yml contents
-    #new_path = book_path.parent / (book_path.name + "_copy")
-    #copytree(book_path, new_path, dirs_exist_ok=True)
+    # new_path = book_path.parent / (book_path.name + "_copy")
+    # copytree(book_path, new_path, dirs_exist_ok=True)
 
     landing_page.LandingPage.book_path = book_path
     toc, profiles = get_toc_and_profiles(book_path)
@@ -77,8 +76,9 @@ def pathways(book_path):
                 generate_toc(toc, profile),
                 landing_name,
                 profile["description"],
-            ))
-        
+            )
+        )
+
     insert_cards(book_path / "index.md", cards)
     insert_landing_pages(landing_pages)
     insert_badges(book_path, badges, profiles)

@@ -23,7 +23,7 @@ class TestGetCuratedList(unittest.TestCase):
     def test_simple(self):
         a_landing_page = LandingPage("test", "sinner")
         whitelisted_toc_path = "tests/test_files/test_landing/toc_whitelist.json"
-        with open(whitelisted_toc_path) as f:
+        with open(whitelisted_toc_path, "r", encoding="utf8") as f:
             toc = json.load(f)
         a_landing_page.gather_curated_links(toc)
         actual = a_landing_page.curated_links
@@ -53,7 +53,9 @@ class TestWriteLandingPageContent(unittest.TestCase):
         ]
         actual_text = a_landing_page.write_content()
         with open(
-            "tests/test_files/test_landing/expected_landing.md", "r"
+            "tests/test_files/test_landing/expected_landing.md",
+            "r",
+            encoding="utf8",
         ) as expected_landing_file:
             expected_landing_text = expected_landing_file.read()
         self.assertMultiLineEqual(actual_text, expected_landing_text)
