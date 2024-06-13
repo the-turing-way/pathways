@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pathways"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Iain-S <25081046+Iain-S@users.noreply.github.com>"]
 
