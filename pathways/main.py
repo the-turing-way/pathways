@@ -139,7 +139,7 @@ def mask_parts(components, whitelist):
                 if value in whitelist:
                     new_component["file"] = value
 
-            elif key in ("parts", "chapters", "sections"):
+            elif key == "children":
                 sub_components = mask_parts(value, whitelist)
                 if sub_components:
                     new_component[key] = sub_components
@@ -147,7 +147,7 @@ def mask_parts(components, whitelist):
         if new_component:
             # Add other entries, like "title": "my title"
             for key, value in component.items():
-                if key not in ("file", "parts", "chapters", "sections"):
+                if key not in ("file", "children"):
                     new_component[key] = value
 
             new_components.append(new_component)
@@ -155,21 +155,6 @@ def mask_parts(components, whitelist):
     return new_components
 
 
-def mask_toc(toc, whitelist):
-    """Makes a new ToC, containing only whitelisted files.
-
-    Args:
-        toc: A Table of Contents dictionary.
-        whitelist: An iterable of files to keep.
-
-    Returns:
-        A new Table of Contents that omits files that aren't whitelisted and
-        components that are now empty.
-    """
-    masked_toc = mask_parts([toc], whitelist)
-    return masked_toc[0]
-
-
 def generate_toc(toc, profile):
     """Generate a new ToC for each profile."""
-    return mask_toc(toc, profile["files"])
+    return mask_parts(toc, profile["files"])
