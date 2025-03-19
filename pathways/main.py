@@ -47,10 +47,10 @@ def main():
 
 
 def get_toc_and_profiles(book_path):
-    """Get the contents of _toc.yml and profiles.yml."""
+    """Get ToC and pathways from myst.yml and profiles.yml respectively."""
 
-    with open(book_path / "_toc.yml", encoding="utf-8") as f:
-        toc = safe_load(f)
+    with open(book_path / "myst.yml", encoding="utf-8") as f:
+        toc = safe_load(f).get("project").get("toc")
 
     with open(book_path / "profiles.yml", encoding="utf-8") as f:
         profiles = safe_load(f)
