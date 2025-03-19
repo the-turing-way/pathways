@@ -52,7 +52,7 @@ class LandingPage:
             for section in list_of_sections_or_file:
                 if "file" in section:
                     # Create a link to whitelisted file
-                    link = os.path.join("./", section["file"] + ".md")
+                    link = os.path.join("./", section["file"])
                     # title = self.get_title_from_curated_page(link)
                     md_link = self.md_file.new_inline_link(link=link, text="")
                     curated_links.append(md_link)
