@@ -53,8 +53,8 @@ class LandingPage:
                     link = os.path.join("../", section["file"])
                     md_link = self.md_file.new_inline_link(link=link, text="")
                     curated_links.append(md_link)
-                if "sections" in section:
-                    curated_links.append(get_links_of_section(section["sections"]))
+                if "children" in section:
+                    curated_links.append(get_links_of_section(section["children"]))
             return curated_links
 
         self.curated_links = get_links_of_section(toc)
