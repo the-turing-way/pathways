@@ -34,12 +34,7 @@ class TestGeneratePanel(unittest.TestCase):
     def test_simple(self):
         list_of_cards = ["one", "two"]
         actual = create_panel(list_of_cards)
-        expected = (
-            "::::{grid} 1 1 2 2\n"
-            "one\n"
-            "two\n"
-            "::::\n"
-        )
+        expected = "::::{grid} 1 1 2 2\none\ntwo\n::::\n"
         self.assertEqual(expected, actual)
 
 
@@ -48,12 +43,7 @@ class TestInsertTextAfterString(unittest.TestCase):
 
     def test_simple(self):
         input_str = "## Different Pathways"
-        panel_str = (
-            "::::{grid} 1 1 2 2\n"
-            "one\n"
-            "two\n"
-            "\n::::\n"
-        )
+        panel_str = "::::{grid} 1 1 2 2\none\ntwo\n\n::::\n"
         expected = "## Different Pathways\n" + panel_str
         actual = insert_text_after_string(input_str, "## Different Pathways", panel_str)
         self.assertEqual(expected, actual)

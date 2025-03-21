@@ -50,12 +50,14 @@ def create_card(profile_name, file_list, landing_name):
     link = f":link: pathways/{landing_name}"
     card_end = ":::"
 
-    return "\n".join([
-        card_start,
-        link,
-        create_bullet_string(file_list),
-        card_end,
-    ])
+    return "\n".join(
+        [
+            card_start,
+            link,
+            create_bullet_string(file_list),
+            card_end,
+        ]
+    )
 
 
 def create_panel(list_cards):

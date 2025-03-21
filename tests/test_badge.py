@@ -1,14 +1,11 @@
 """Tests for the badge module."""
 
 import unittest
-from pathlib import Path
-from unittest import mock
 
 from pathways.badge import (
     edit_text,
     generate_badge,
     generate_shields_link,
-    insert_badges,
     make_badge_dict,
 )
 

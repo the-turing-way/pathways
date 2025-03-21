@@ -45,9 +45,9 @@ class TestMask(unittest.TestCase):
 
     def test_sections(self):
         parts = [
-                    {"file": "file1", "children": [{"file": "file2"}]},
-                    {"file": "file3", "children": [{"file": "file4"}]},
-                ]
+            {"file": "file1", "children": [{"file": "file2"}]},
+            {"file": "file3", "children": [{"file": "file4"}]},
+        ]
         whitelist = [
             "file1",
             "file2",
@@ -78,9 +78,7 @@ class TestMask(unittest.TestCase):
         expected = [
             {
                 "file": "file1",
-                "children": [
-                    {"file": "file2", "children": [{"file": "file4"}]}
-                ],
+                "children": [{"file": "file2", "children": [{"file": "file4"}]}],
             },
         ]
         actual = mask_parts(parts, whitelist)

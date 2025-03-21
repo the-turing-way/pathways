@@ -5,7 +5,7 @@ from pathlib import Path
 from shutil import which
 from subprocess import run
 
-from yaml import safe_load, safe_dump
+from yaml import safe_dump, safe_load
 
 from pathways import landing_page
 from pathways.badge import generate_badge, insert_badges
@@ -40,8 +40,8 @@ def main():
             )
             raise FileNotFoundError(msg)
 
-        run(
-            [jupyter_book_executable, "build", clargs.book_path],  # noqa:S603
+        run(  # noqa:S603
+            [jupyter_book_executable, "build", clargs.book_path],
             check=True,
         )
 
@@ -112,12 +112,12 @@ def pathways(book_path):
     insert_cards(book_path / "index.md", cards)
     insert_landing_pages(landing_pages)
     insert_badges(book_path, badges, profiles)
-    ammend_toc(book_path, config, profiles)
+    ammend_toc(book_path, config)
 
     print("Finished adding pathways.")  # noqa: T201
 
 
-def ammend_toc(book_path, config, profiles):
+def ammend_toc(book_path, config):
     toc = config.get("project").get("toc")
     toc.insert(
         1,
