@@ -51,7 +51,7 @@ def create_bullet_string(file_list):
 def create_card(profile_name, file_list, landing_name):
     """Create a single card."""
     card_start = f":::{{card}} {profile_name}"
-    link = f":link: {strip_md_suffix(landing_name)}"
+    link = f":link: pathways/{strip_md_suffix(landing_name)}"
     card_end = ":::"
 
     return "\n".join([

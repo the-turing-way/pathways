@@ -25,10 +25,8 @@ class LandingPage:
         #  This is the title of the landing page
         self.landing_page_title = self.persona
 
-        # self.landing_page_title = "Table of Contents for: {0}".format(self.persona)
         #  This is the path of the landing page
-        # self.landing_page_path = os.path.join(self.book_path, self.persona)
-        self.landing_page_path = os.path.join(self.book_path, landing_name)
+        self.landing_page_path = os.path.join(self.book_path, "pathways", landing_name)
         # This is the instance of the class used to generate a markdown file.
         # It is instantiated with the name of the file.
         self.description = description
@@ -52,8 +50,7 @@ class LandingPage:
             for section in list_of_sections_or_file:
                 if "file" in section:
                     # Create a link to whitelisted file
-                    link = os.path.join("./", section["file"])
-                    # title = self.get_title_from_curated_page(link)
+                    link = os.path.join("../", section["file"])
                     md_link = self.md_file.new_inline_link(link=link, text="")
                     curated_links.append(md_link)
                 if "sections" in section:
