@@ -8,7 +8,7 @@ def generate_badge(profile_name, colour, landing_name):
     """Return some badge markdown and a list of files to insert it into."""
 
     url = generate_shields_link(profile_name, colour)
-    landing_page = f"pathways/{landing_name}.md"
+    landing_page = f"pathways/{landing_name}"
     markdown = f"[![]({url})](/{landing_page})"
 
     return markdown
