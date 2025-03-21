@@ -30,16 +30,20 @@ def overwrite_md(new_md_text, path_welcome_md):
         txt.write(new_md_text)
 
 
+def strip_md_suffix(path):
+    return path[:-3] if path.endswith(".md") else path
+
+
 def create_bullet_string(file_list):
     """From the list of files for a single toc, create a bullet point string."""
     toc_string = ""
     max_bullets = 3
 
     for f in file_list[:max_bullets]:
-        toc_string += "- [](" + f + ")\n"
+        toc_string += f"- []({strip_md_suffix(f)})\n"
 
     if len(file_list) > max_bullets:
-        toc_string += "\nAnd more... \n"
+        toc_string += "\nAnd more…\n"
 
     return toc_string
 
@@ -47,7 +51,7 @@ def create_bullet_string(file_list):
 def create_card(profile_name, file_list, landing_name):
     """Create a single card."""
     card_start = f":::{{card}} {profile_name}"
-    link = f":link: {landing_name}"
+    link = f":link: {strip_md_suffix(landing_name)}"
     card_end = ":::"
 
     return "\n".join([
