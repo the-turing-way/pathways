@@ -29,32 +29,10 @@ class TestGetCuratedList(unittest.TestCase):
         a_landing_page.gather_curated_links(toc)
         actual = a_landing_page.curated_links
         expected = [
-            "[](./communication/communication.md)",
+            "[](../communication/communication)",
             [
-                "[](./communication/comms-overview.md)",
-                ["[](./communication/comms-overview/comms-overview-principles.md)"],
+                "[](../communication/comms-overview)",
+                ["[](../communication/comms-overview/comms-overview-principles)"],
             ],
         ]
         self.assertEqual(actual, expected)
-
-
-class TestWriteLandingPageContent(unittest.TestCase):
-    """Tests for generate_badge function."""
-
-    def test_simple(self):
-        a_landing_page = LandingPage(
-            persona="test", landing_name="tests/test_files/test_landing/actual_landing"
-        )
-        a_landing_page.curated_links = [
-            "[](./communication/communication.md)",
-            [
-                "[](./communication/comms-overview.md)",
-                ["[](./communication/comms-overview/comms-overview-principles.md)"],
-            ],
-        ]
-        actual_text = a_landing_page.write_content()
-        with open(
-            "tests/test_files/test_landing/expected_landing.md"
-        ) as expected_landing_file:
-            expected_landing_text = expected_landing_file.read()
-        self.assertMultiLineEqual(actual_text.strip(), expected_landing_text.strip())

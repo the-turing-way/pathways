@@ -5,6 +5,6 @@ root: intro
 parts:
 - chapters:
   - file: setup
-    sections:
+    children:
     - title: Open Data (best practice)
       file: reproducible_research/open-data

@@ -4,7 +4,7 @@ format: jb-book
 root: intro
 chapters:
   - file: setup
-    sections:
+    children:
       - title: Version Control with Git
         file: version_control/git
       - title: Open Data (best practice)
