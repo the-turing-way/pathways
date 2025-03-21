@@ -5,7 +5,7 @@ from pathlib import Path
 from shutil import which
 from subprocess import run
 
-from yaml import safe_load
+from yaml import safe_load, safe_dump
 
 from pathways import landing_page
 from pathways.badge import generate_badge, insert_badges
@@ -46,16 +46,16 @@ def main():
         )
 
 
-def get_toc_and_profiles(book_path):
-    """Get ToC and pathways from myst.yml and profiles.yml respectively."""
+def get_config_and_profiles(book_path):
+    """Get config and pathways from myst.yml and profiles.yml respectively."""
 
     with open(book_path / "myst.yml", encoding="utf-8") as f:
-        toc = safe_load(f).get("project").get("toc")
+        config = safe_load(f)
 
     with open(book_path / "profiles.yml", encoding="utf-8") as f:
         profiles = safe_load(f)
 
-    return toc, profiles
+    return config, profiles
 
 
 def generate_card(profile: dict, landing_name):
@@ -88,7 +88,8 @@ def generate_landing_name(profile_name):
 def pathways(book_path):
     """Add extra pathways to the book."""
     landing_page.LandingPage.book_path = book_path
-    toc, profiles = get_toc_and_profiles(book_path)
+    config, profiles = get_config_and_profiles(book_path)
+    toc = config.get("project").get("toc")
 
     landing_pages = []
     badges = []
@@ -111,8 +112,25 @@ def pathways(book_path):
     insert_cards(book_path / "index.md", cards)
     insert_landing_pages(landing_pages)
     insert_badges(book_path, badges, profiles)
+    ammend_toc(book_path, config, profiles)
 
     print("Finished adding pathways.")  # noqa: T201
+
+
+def ammend_toc(book_path, config, profiles):
+    toc = config.get("project").get("toc")
+    toc.insert(
+        1,
+        {
+            "title": "Pathways",
+            "children": [
+                {"pattern": "pathways/*.md"},
+            ],
+        },
+    )
+
+    with open(book_path / "myst.yml", "w") as f:
+        safe_dump(config, f)
 
 
 def mask_parts(components, whitelist):
