@@ -93,6 +93,10 @@ class LandingPage:
         return header_content
 
     def write_content(self):
+        directory = os.path.dirname(self.landing_page_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
         self.md_file.new_header(level=1, title=self.persona, add_table_of_contents="n")
         self.md_file.new_paragraph(self.description)
         self.md_file.write("<h2>Table Of Contents</h2>")
