@@ -8,7 +8,7 @@ def generate_badge(profile_name, colour, landing_name):
     """Return some badge markdown and a list of files to insert it into."""
 
     url = generate_shields_link(profile_name, colour)
-    landing_page = f"{landing_name}.md"
+    landing_page = f"pathways/{landing_name}"
     markdown = f"[![]({url})](/{landing_page})"
 
     return markdown
@@ -33,12 +33,12 @@ def insert_badges(book_path, badges, profiles):
     badge_dict = make_badge_dict(badges, profiles)
 
     for key, value in badge_dict.items():
-        with open(book_path / (key + ".md"), encoding="utf-8") as f:
+        with open(book_path / key, encoding="utf-8") as f:
             text = f.read()
 
         text = edit_text(value, text)
 
-        with open(book_path / (key + ".md"), "w", encoding="utf-8") as f:
+        with open(book_path / key, "w", encoding="utf-8") as f:
             f.write(text)
 
 

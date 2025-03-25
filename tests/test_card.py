@@ -17,15 +17,13 @@ class TestCreateCard(unittest.TestCase):
         ]
         actual = create_card("SomePersona", file_list, "sinner")
         expected = (
-            "```{link-button} ./sinner.html\n"
-            ":text: SomePersona\n"
-            ":classes: bg-info text-white text-center font-weight-bold\n"
-            "```\n"
-            "^^^\n"
-            "- [](welcome)\n"
-            "- [](communication/communication)\n"
-            "- [](communication/comms-overview)\n"
-            "\nAnd more... \n"
+            ":::{card} SomePersona\n"
+            ":link: pathways/sinner\n"
+            "- [](./welcome)\n"
+            "- [](./communication/communication)\n"
+            "- [](./communication/comms-overview)\n"
+            "\nAnd more…\n"
+            "\n:::"
         )
         self.assertEqual(expected, actual)
 
@@ -36,18 +34,7 @@ class TestGeneratePanel(unittest.TestCase):
     def test_simple(self):
         list_of_cards = ["one", "two"]
         actual = create_panel(list_of_cards)
-        expected = (
-            ":::{panels}\n"
-            ":container: +full-width\n"
-            ":column: col-lg-6 px-2 py-2\n"
-            ":header: text-center bg-white\n"
-            ":card: text-left shadow\n"
-            ":footer: text-left\n"
-            "one"
-            "\n---\n"
-            "two"
-            "\n::: \n"
-        )
+        expected = "::::{grid} 1 1 2 2\none\ntwo\n::::\n"
         self.assertEqual(expected, actual)
 
 
@@ -56,18 +43,7 @@ class TestInsertTextAfterString(unittest.TestCase):
 
     def test_simple(self):
         input_str = "## Different Pathways"
-        panel_str = (
-            ":::{panels}\n"
-            ":container: +full-width\n"
-            ":column: col-lg-6 px-2 py-2\n"
-            ":header: text-center bg-white\n"
-            ":card: text-left shadow\n"
-            ":footer: text-left\n"
-            "one"
-            "\n---\n"
-            "two"
-            "\n::: \n"
-        )
+        panel_str = "::::{grid} 1 1 2 2\none\ntwo\n\n::::\n"
         expected = "## Different Pathways\n" + panel_str
         actual = insert_text_after_string(input_str, "## Different Pathways", panel_str)
         self.assertEqual(expected, actual)

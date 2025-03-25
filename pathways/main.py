@@ -5,7 +5,7 @@ from pathlib import Path
 from shutil import which
 from subprocess import run
 
-from yaml import safe_load
+from yaml import safe_dump, safe_load
 
 from pathways import landing_page
 from pathways.badge import generate_badge, insert_badges
@@ -40,22 +40,22 @@ def main():
             )
             raise FileNotFoundError(msg)
 
-        run(
-            [jupyter_book_executable, "build", clargs.book_path],  # noqa:S603
+        run(  # noqa:S603
+            [jupyter_book_executable, "build", clargs.book_path],
             check=True,
         )
 
 
-def get_toc_and_profiles(book_path):
-    """Get the contents of _toc.yml and profiles.yml."""
+def get_config_and_profiles(book_path):
+    """Get config and pathways from myst.yml and profiles.yml respectively."""
 
-    with open(book_path / "_toc.yml", encoding="utf-8") as f:
-        toc = safe_load(f)
+    with open(book_path / "myst.yml", encoding="utf-8") as f:
+        config = safe_load(f)
 
     with open(book_path / "profiles.yml", encoding="utf-8") as f:
         profiles = safe_load(f)
 
-    return toc, profiles
+    return config, profiles
 
 
 def generate_card(profile: dict, landing_name):
@@ -88,7 +88,8 @@ def generate_landing_name(profile_name):
 def pathways(book_path):
     """Add extra pathways to the book."""
     landing_page.LandingPage.book_path = book_path
-    toc, profiles = get_toc_and_profiles(book_path)
+    config, profiles = get_config_and_profiles(book_path)
+    toc = config.get("project").get("toc")
 
     landing_pages = []
     badges = []
@@ -111,8 +112,25 @@ def pathways(book_path):
     insert_cards(book_path / "index.md", cards)
     insert_landing_pages(landing_pages)
     insert_badges(book_path, badges, profiles)
+    ammend_toc(book_path, config)
 
     print("Finished adding pathways.")  # noqa: T201
+
+
+def ammend_toc(book_path, config):
+    toc = config.get("project").get("toc")
+    toc.insert(
+        1,
+        {
+            "title": "Pathways",
+            "children": [
+                {"pattern": "pathways/*.md"},
+            ],
+        },
+    )
+
+    with open(book_path / "myst.yml", "w") as f:
+        safe_dump(config, f)
 
 
 def mask_parts(components, whitelist):
@@ -139,7 +157,7 @@ def mask_parts(components, whitelist):
                 if value in whitelist:
                     new_component["file"] = value
 
-            elif key in ("parts", "chapters", "sections"):
+            elif key == "children":
                 sub_components = mask_parts(value, whitelist)
                 if sub_components:
                     new_component[key] = sub_components
@@ -147,7 +165,7 @@ def mask_parts(components, whitelist):
         if new_component:
             # Add other entries, like "title": "my title"
             for key, value in component.items():
-                if key not in ("file", "parts", "chapters", "sections"):
+                if key not in ("file", "children"):
                     new_component[key] = value
 
             new_components.append(new_component)
@@ -155,21 +173,6 @@ def mask_parts(components, whitelist):
     return new_components
 
 
-def mask_toc(toc, whitelist):
-    """Makes a new ToC, containing only whitelisted files.
-
-    Args:
-        toc: A Table of Contents dictionary.
-        whitelist: An iterable of files to keep.
-
-    Returns:
-        A new Table of Contents that omits files that aren't whitelisted and
-        components that are now empty.
-    """
-    masked_toc = mask_parts([toc], whitelist)
-    return masked_toc[0]
-
-
 def generate_toc(toc, profile):
     """Generate a new ToC for each profile."""
-    return mask_toc(toc, profile["files"])
+    return mask_parts(toc, profile["files"])

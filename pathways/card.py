@@ -36,50 +36,37 @@ def create_bullet_string(file_list):
     max_bullets = 3
 
     for f in file_list[:max_bullets]:
-        toc_string += "- [](" + f + ")\n"
+        toc_string += f"- [](./{f})\n"
 
     if len(file_list) > max_bullets:
-        toc_string += "\nAnd more... \n"
+        toc_string += "\nAnd more…\n"
 
     return toc_string
 
 
 def create_card(profile_name, file_list, landing_name):
     """Create a single card."""
-    button_string = create_profile_button(profile_name, landing_name)
-    toc_string = create_bullet_string(file_list)
-    return button_string + toc_string
+    card_start = f":::{{card}} {profile_name}"
+    link = f":link: pathways/{landing_name}"
+    card_end = ":::"
+
+    return "\n".join(
+        [
+            card_start,
+            link,
+            create_bullet_string(file_list),
+            card_end,
+        ]
+    )
 
 
 def create_panel(list_cards):
     """Create the full panel, with all cards."""
 
-    panel_start = (
-        ":::{panels}\n"
-        ":container: +full-width\n"
-        ":column: col-lg-6 px-2 py-2\n"
-        ":header: text-center bg-white\n"
-        ":card: text-left shadow\n"
-        ":footer: text-left\n"
-    )
+    panel_start = "::::{grid} 1 1 2 2\n"
+    panel_end = "\n::::\n"
 
     panel_string = panel_start
-    panel_end = "\n::: \n"
-    panel_string += "\n---\n".join(list_cards)
+    panel_string += "\n".join(list_cards)
     panel_string += panel_end
     return panel_string
-
-
-def create_profile_button(profile_name, landing_name):
-    """Create the button linking to the profile."""
-    # relative_path = "./" + profile_name.lower() + ".html"
-    relative_path = f"./{landing_name}.html"
-    start_button = "```{link-button} "
-    text_button = "\n:text: "
-    option_button = "\n:classes: bg-info text-white text-center font-weight-bold\n```"
-    end_card_header = "\n^^^\n"
-
-    button_string = start_button + relative_path
-    button_string += text_button + profile_name
-    button_string += option_button + end_card_header
-    return button_string
