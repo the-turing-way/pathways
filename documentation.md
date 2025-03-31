@@ -30,9 +30,9 @@ Here is an example
 ```yaml
 - name: Early Career Researchers
   files:
-    - project-design/project-design
-    - collaboration/github-novice
-    - project-design/project-repo
+    - project-design/project-design.md
+    - collaboration/github-novice.md
+    - project-design/project-repo.md
 ...
   colour: blue
   description: Early Career Researchers (ECRs) are students, PhDs and early-stage
@@ -49,7 +49,7 @@ Each pathway has the following keys,
   The pathway name.
   This will be used in the tags, the landing page title, and the card.
 - **files**
-  Relative paths of the pages to include (excluding `.md` suffix).
+  Relative paths of the pages to include.
   Note that if you include a page without its parents it will not appear in the landing page.
   So it is not possible to have `communications/comms-overview/comms-overview-principles` without `communications/comms-overview/`.
   Pages missing from the landing page will still be tagged with badges.
