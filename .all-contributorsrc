@@ -69,6 +69,19 @@
         "userTesting",
         "test"
       ]
+    },
+    {
+      "login": "JimMadge",
+      "name": "Jim Madge",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23616154?v=4",
+      "profile": "https://blog.jmadge.com",
+      "contributions": [
+        "code",
+        "bug",
+        "infra",
+        "doc",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
