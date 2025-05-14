@@ -1,6 +1,6 @@
 # Pathways
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![GitHub License](https://img.shields.io/github/license/the-turing-way/pathways)
@@ -53,6 +53,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/myyong"><img src="https://avatars.githubusercontent.com/u/5417696?v=4?s=100" width="100px;" alt="myyong"/><br /><sub><b>myyong</b></sub></a><br /><a href="https://github.com/the-turing-way/pathways/commits?author=myyong" title="Code">💻</a> <a href="#ideas-myyong" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-myyong" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/the-turing-way/pathways/commits?author=myyong" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Iain-S"><img src="https://avatars.githubusercontent.com/u/25081046?v=4?s=100" width="100px;" alt="Iain Stenson"/><br /><sub><b>Iain Stenson</b></sub></a><br /><a href="https://github.com/the-turing-way/pathways/commits?author=Iain-S" title="Code">💻</a> <a href="#ideas-Iain-S" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-Iain-S" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/the-turing-way/pathways/commits?author=Iain-S" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/LydiaFrance"><img src="https://avatars.githubusercontent.com/u/85945427?v=4?s=100" width="100px;" alt="Lydia France"/><br /><sub><b>Lydia France</b></sub></a><br /><a href="https://github.com/the-turing-way/pathways/commits?author=LydiaFrance" title="Code">💻</a> <a href="https://github.com/the-turing-way/pathways/commits?author=LydiaFrance" title="Documentation">📖</a> <a href="https://github.com/the-turing-way/pathways/commits?author=LydiaFrance" title="Tests">⚠️</a></td>
     </tr>
   </tbody>
 </table>
