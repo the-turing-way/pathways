@@ -56,6 +56,19 @@
         "financial",
         "design"
       ]
+    },
+    {
+      "login": "arya1302",
+      "name": "Arya A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/73542599?v=4",
+      "profile": "https://github.com/arya1302",
+      "contributions": [
+        "code",
+        "bug",
+        "infra",
+        "userTesting",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
