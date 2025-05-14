@@ -1,0 +1,29 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "myyong",
+      "name": "myyong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5417696?v=4",
+      "profile": "https://github.com/myyong",
+      "contributions": [
+        "code",
+        "ideas",
+        "infra",
+        "test"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "pathways",
+  "projectOwner": "the-turing-way"
+}
