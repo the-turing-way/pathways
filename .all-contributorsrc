@@ -80,7 +80,8 @@
         "bug",
         "infra",
         "doc",
-        "review"
+        "review",
+        "maintenance"
       ]
     },
     {
