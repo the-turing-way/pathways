@@ -38,7 +38,7 @@ class LandingPage:
         return aboutme
 
     def gather_curated_links(self, toc):
-        """This generates a list containing markdown links to aloow-listed pages
+        """This generates a list containing markdown links to allow-listed pages
         Input: Allow-listed toc (files and sections), arranged as required by
                the layout of the toc
         Output: Links with url and page title, arranged as required by the
