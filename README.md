@@ -1,6 +1,6 @@
 # Pathways
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![GitHub License](https://img.shields.io/github/license/the-turing-way/pathways)
@@ -62,6 +62,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://dannygarside.co.uk"><img src="https://avatars.githubusercontent.com/u/3739866?v=4?s=100" width="100px;" alt="Danny Garside"/><br /><sub><b>Danny Garside</b></sub></a><br /><a href="https://github.com/the-turing-way/pathways/commits?author=da5nsy" title="Documentation">📖</a> <a href="https://github.com/the-turing-way/pathways/pulls?q=is%3Apr+reviewed-by%3Ada5nsy" title="Reviewed Pull Requests">👀</a> <a href="#infra-da5nsy" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-da5nsy" title="Maintenance">🚧</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://bsipocz.github.io/"><img src="https://avatars.githubusercontent.com/u/6788290?v=4?s=100" width="100px;" alt="Brigitta Sipőcz"/><br /><sub><b>Brigitta Sipőcz</b></sub></a><br /><a href="https://github.com/the-turing-way/pathways/pulls?q=is%3Apr+reviewed-by%3Absipocz" title="Reviewed Pull Requests">👀</a> <a href="#infra-bsipocz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/the-turing-way/pathways/commits?author=bsipocz" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://sgibson91.github.io/"><img src="https://avatars.githubusercontent.com/u/44771837?v=4?s=100" width="100px;" alt="Sarah Gibson"/><br /><sub><b>Sarah Gibson</b></sub></a><br /><a href="https://github.com/the-turing-way/pathways/commits?author=sgibson91" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
