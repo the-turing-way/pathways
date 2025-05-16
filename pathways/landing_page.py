@@ -11,7 +11,7 @@ class LandingPage:
     Input:
     1. Path of Jupyter book,
     2. Label for audience of markdown page (eg. dsg)
-    3. A list containing the toc files whitelisted for this audience
+    3. A list containing the toc files allow-listed for this audience
     Output:
     1. A markdown page containing a toc with links curated for this audience
     """
@@ -38,8 +38,8 @@ class LandingPage:
         return aboutme
 
     def gather_curated_links(self, toc):
-        """This generates a list containing markdown links to whitelisted pages
-        Input: Whitelisted toc (files and sections), arranged as required by
+        """This generates a list containing markdown links to allow-listed pages
+        Input: Allow-listed toc (files and sections), arranged as required by
                the layout of the toc
         Output: Links with url and page title, arranged as required by the
                 layout of the toc
@@ -49,7 +49,7 @@ class LandingPage:
             curated_links = []
             for section in list_of_sections_or_file:
                 if "file" in section:
-                    # Create a link to whitelisted file
+                    # Create a link to allow-listed file
                     link = os.path.join("../", section["file"])
                     md_link = self.md_file.new_inline_link(link=link, text="")
                     curated_links.append(md_link)

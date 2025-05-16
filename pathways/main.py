@@ -133,16 +133,16 @@ def ammend_toc(book_path, config):
         safe_dump(config, f)
 
 
-def mask_parts(components, whitelist):
-    """Makes a new components list, containing only whitelisted files.
+def mask_parts(components, allow_list):
+    """Makes a new components list, containing only allow-listed files.
 
     Args:
         components: An iterable of parts, chapters or sections.
-        whitelist: An iterable of files to keep.
+        allow_list: An iterable of files to keep.
 
     Returns:
         A new list of parts, chapters or sections that omits files that aren't
-        whitelisted and components that are now empty.
+        allow-listed and components that are now empty.
     """
 
     # Don't modify components as they may be needed by other profiles
@@ -154,11 +154,11 @@ def mask_parts(components, whitelist):
 
         for key, value in component.items():
             if key == "file":
-                if value in whitelist:
+                if value in allow_list:
                     new_component["file"] = value
 
             elif key == "children":
-                sub_components = mask_parts(value, whitelist)
+                sub_components = mask_parts(value, allow_list)
                 if sub_components:
                     new_component[key] = sub_components
 

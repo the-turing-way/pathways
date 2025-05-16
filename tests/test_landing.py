@@ -23,8 +23,8 @@ class TestGetCuratedList(unittest.TestCase):
 
     def test_simple(self):
         a_landing_page = LandingPage("test", "sinner")
-        whitelisted_toc_path = "tests/test_files/test_landing/toc_whitelist.json"
-        with open(whitelisted_toc_path) as f:
+        allow_listed_toc_path = "tests/test_files/test_landing/toc_allow_list.json"
+        with open(allow_listed_toc_path) as f:
             toc = json.load(f)
         a_landing_page.gather_curated_links(toc)
         actual = a_landing_page.curated_links

@@ -35,12 +35,12 @@ class TestMask(unittest.TestCase):
 
     def test_chapters(self):
         parts = [{"file": "file1"}, {"file": "file2"}]
-        whitelist = [
+        allow_list = [
             "file1",
         ]
 
         expected = [{"file": "file1"}]
-        actual = mask_parts(parts, whitelist)
+        actual = mask_parts(parts, allow_list)
         self.assertListEqual(expected, actual)
 
     def test_sections(self):
@@ -48,13 +48,13 @@ class TestMask(unittest.TestCase):
             {"file": "file1", "children": [{"file": "file2"}]},
             {"file": "file3", "children": [{"file": "file4"}]},
         ]
-        whitelist = [
+        allow_list = [
             "file1",
             "file2",
         ]
 
         expected = [{"file": "file1", "children": [{"file": "file2"}]}]
-        actual = mask_parts(parts, whitelist)
+        actual = mask_parts(parts, allow_list)
         self.assertListEqual(expected, actual)
 
     def test_sub_sections(self):
@@ -69,7 +69,7 @@ class TestMask(unittest.TestCase):
                 ],
             },
         ]
-        whitelist = [
+        allow_list = [
             "file1",
             "file2",
             "file4",
@@ -81,7 +81,7 @@ class TestMask(unittest.TestCase):
                 "children": [{"file": "file2", "children": [{"file": "file4"}]}],
             },
         ]
-        actual = mask_parts(parts, whitelist)
+        actual = mask_parts(parts, allow_list)
         self.assertListEqual(expected, actual)
 
     def test_preserves_title(self):
@@ -101,7 +101,7 @@ class TestMask(unittest.TestCase):
                 ],
             },
         ]
-        whitelist = [
+        allow_list = [
             "file1",
             "file2",
             "file3",
@@ -120,7 +120,7 @@ class TestMask(unittest.TestCase):
                 ],
             },
         ]
-        actual = mask_parts(parts, whitelist)
+        actual = mask_parts(parts, allow_list)
         self.assertListEqual(expected, actual)
 
 
