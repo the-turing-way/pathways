@@ -9,6 +9,8 @@
 
 Curate user pathways for The Turing Way
 
+⚠️ superseded by [myst-curation](https://github.com/the-turing-way/myst-curation)⚠️
+
 ## Documentation
 
 Read the [user guide](./documentation.md) to learn how to create pathways.
